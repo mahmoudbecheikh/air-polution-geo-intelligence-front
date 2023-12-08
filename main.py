@@ -17,7 +17,7 @@ def get_api_data(api_url):
     else:
         return None
 
-countries = [country[0] for country in get_api_data('http://54.157.88.204/countries').map(str.capitalize).values.tolist()]
+countries = [country[0] for country in get_api_data('http://20.67.251.38/countries').map(str.capitalize).values.tolist()]
 countries.insert(0, "Touts")
 
 def get_quote():
@@ -37,11 +37,13 @@ with st.sidebar:
 
 
 if data_type == 'Valeur globale de l’indice de qualité de l’air':
-    data = get_api_data("http://54.157.88.204/?type=carbon")
+    data = get_api_data("http://20.67.251.38/?type=carbon")
     data["exits_radius"] = data["aqi_value"].map(lambda x : x * 100)
     data["color"] = data["aqi_category"].map(color_aqi)
 else:
-    data = get_api_data("http://54.157.88.204/?type=ozone")
+    data = get_api_data("http://20.67.251.38/?type=ozone")
+    data["exits_radius"] = data["ozone_aqi_value"].map(lambda x : x * 100)
+    data["color"] = data["ozone_aqi_category"].map(color_aqi)
 
 
 
@@ -65,7 +67,7 @@ layer = pdk.Layer(
 if regionSelected == 'Touts':
     view_state = pdk.ViewState(latitude=48.85667, longitude= 2.35222, zoom=4,aring=0, pitch=0)
 else:
-    country_df = get_api_data(f"http://54.157.88.204?country={regionSelected.lower()}")
+    country_df = get_api_data(f"http://20.67.251.38?country={regionSelected.lower()}")
     coordinates = country_df.iloc[0]['coordinates']
     view_state = pdk.ViewState(latitude=coordinates[1], longitude=coordinates[0], zoom=4,aring=0, pitch=0)
 
