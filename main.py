@@ -5,7 +5,6 @@ import plotly.express as px
 from random import choice
 import pydeck as pdk
 import pandas as pd
-from IPython.display import HTML, display
 import streamlit.components.v1 as components
 import requests
 from utils import color_aqi
