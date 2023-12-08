@@ -139,6 +139,3 @@ components.html("""
 </div>
    """
 )
-st.markdown(
-    "[Source de données <<UNICEF_State_of_World_Children_2021>>](https://www.kaggle.com/datasets/nguyenngocphung/unicef-state-of-world-children-2021?resource=download)"
-)
